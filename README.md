@@ -26,10 +26,3 @@ an.train(X,y)
 print(an.accuracyScore(an.predict(X),y))
 an.plotDecisionBoundary(X,y)
 ```
-
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
-
