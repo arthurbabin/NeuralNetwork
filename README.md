@@ -19,7 +19,7 @@ X,y = make_blobs(
 y = y.reshape((y.shape[0],1))
 
 ### CREATE AND TRAIN ARTIFICIAL NEURON
-an = ArtificialNeuron(nIterations=10000)
+an = ArtificialNeuron(nIterations=10000, learningRate=0.1)
 an.train(X,y)
 
 ### DISPLAY THE RESULTS 
