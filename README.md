@@ -1,7 +1,7 @@
 # Hand Made Neural Networks
 <br>
 ## Artificial Neuron Implementation
-<img src="https://github.com/arthurbabin/checkersAI/blob/main/screenshots/example.png?raw=true" width="300" height="324"/>
+<img src="https://github.com/arthurbabin/NeuralNetwork/blob/main/images/AN_decisionBoundary.png?raw=true" width="300" height="324"/>
 ```python
 ### VARIABLES ###
 nFeatures = 2
@@ -23,5 +23,11 @@ an.train(X,y)
 ### DISPLAY THE RESULTS 
 print(an.accuracyScore(an.predict(X),y))
 an.plotDecisionBoundary(X,y)
+```
+
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
 ```
 
