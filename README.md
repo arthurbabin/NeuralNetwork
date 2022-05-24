@@ -1,6 +1,8 @@
 # Hand Made Neural Networks
 ## Artificial Neuron Implementation
+
 <img src="https://github.com/arthurbabin/NeuralNetwork/blob/main/images/AN_decisionBoundary.png?raw=true" width="800" height="450"/>
+
 ### Usage
 ```python
 ### VARIABLES ###
