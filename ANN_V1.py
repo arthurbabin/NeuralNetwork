@@ -3,6 +3,7 @@ from sklearn.datasets import make_circles
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import tqdm
 
 class ANN_V1:
     params = {}
@@ -72,13 +73,16 @@ class ANN_V1:
         assert self.params["b1"].shape == (self.dims[0],1)
         assert self.params["b2"].shape == (1,1)
 
-    def predict(self,X):
+    def predict(self,X,strict=True):
         """Return the output vector of the ArtificialNeuron
         for the given input vector X"""
         activations = self.forwardPropagation(X)
         A2 = activations["A2"]
 
-        return (A2 > 0.5).T
+        if strict:
+            return (A2 > 0.5).T
+        else:
+            return A2.T
 
     def initParams(self,n0,n1,n2):
         np.random.seed(0)
@@ -106,7 +110,7 @@ class ANN_V1:
         lossValues = []
         accValues = []
 
-        for i in range(self.nIterations):
+        for i in tqdm.tqdm(range(self.nIterations)):
             activations = self.forwardPropagation(X) #Compute the output of the model
             self.backPropagation(X,y,activations) #update values of gradients 
             self.gradientDescent() #update values of parameters
@@ -165,13 +169,13 @@ class ANN_V1:
         r1, r2 = xx.flatten(), yy.flatten()
         r1, r2 = r1.reshape((len(r1), 1)), r2.reshape((len(r2), 1))
         grid = np.hstack((r1,r2))
-        yhat = self.predict(grid)
+        yhat = self.predict(grid,strict=False)
         yhat = yhat[:, 0]
         zz = yhat.reshape(xx.shape)
         f = plt.figure()
         f.set_figwidth(16)
         f.set_figheight(9)
-        c = plt.contourf(xx, yy, zz, cmap='seismic',vmin=0,vmax=1)
+        c = plt.contourf(xx, yy, zz, cmap='seismic', levels=4, vmin=0, vmax=1)
         plt.colorbar(c,label="Predicted Output")
 
         sns.scatterplot(
@@ -185,7 +189,7 @@ class ANN_V1:
 
         plt.xlabel("feature n°1")
         plt.ylabel("feature n°2")
-        plt.legend(title="output")
+        plt.legend(title="Real output")
         plt.title(f"Decision Boundary of the ANN (accuracy={self.accuracyScore(self.predict(X),y)}, iteration={iteration})")
         f.savefig(name,format="png")
         plt.close()

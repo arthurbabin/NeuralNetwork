@@ -3,6 +3,7 @@
 
 
 ![GIF Demo Single Neuron](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/singleNeuron.gif)
+![GIF Demo Single Neuron](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/singleNeuron_range.gif)
 
 ### Usage
 ```python
@@ -31,3 +32,4 @@ an.plotDecisionBoundary(X,y)
 ## Artificial Neural Network with 1 hidden layer (ANN V1)
 
 ![GIF Demo ANN V1](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V1.gif)
+![GIF Demo ANN V1](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V1_range.gif)

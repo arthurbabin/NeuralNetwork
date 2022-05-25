@@ -41,11 +41,14 @@ class ArtificialNeuron:
         self.W = self.W - self.learningRate * self.dW
         self.b = self.b - self.learningRate * self.db
 
-    def predict(self,X):
+    def predict(self,X,strict=True):
         """Return the output vector of the ArtificialNeuron
         for the given input vector X"""
         A = self.model(X)
-        return A > 0.5
+        if strict:
+            return A > 0.5
+        else:
+            return A
 
     def train(self,X,y,plotLogLossEvolution=False, plotDecisionBoundary=False):
         """The training algorithm of the artificial Neuron, the 
@@ -106,14 +109,14 @@ class ArtificialNeuron:
         r1, r2 = xx.flatten(), yy.flatten()
         r1, r2 = r1.reshape((len(r1), 1)), r2.reshape((len(r2), 1))
         grid = np.hstack((r1,r2))
-        yhat = self.predict(grid)
+        yhat = self.predict(grid,strict=False)
         yhat = yhat[:, 0]
         zz = yhat.reshape(xx.shape)
         f = plt.figure()
         f.set_figwidth(16)
         f.set_figheight(9)
-        c = plt.contourf(xx, yy, zz, cmap='seismic')
-        plt.colorbar(c)
+        c = plt.contourf(xx, yy, zz, cmap='seismic', levels=4, vmin=0, vmax=1)
+        plt.colorbar(c,label="Real Output")
 
         sns.scatterplot(
                 x=X[:,0],
@@ -126,7 +129,7 @@ class ArtificialNeuron:
 
         plt.xlabel("feature n°1")
         plt.ylabel("feature n°2")
-        plt.legend(title="output")
+        plt.legend(title="Expected output")
         plt.title(f"Decision Boundary of the Artificial Neuron (accuracy={self.accuracyScore(self.predict(X),y)}, iteration={iteration})")
         f.savefig(name,format="png")
         plt.close()
