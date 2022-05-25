@@ -1,7 +1,6 @@
 # Hand Made Neural Networks
 ## Artificial Neuron Implementation
 
-![GIF Demo](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V1.gif)
 
 <img src="https://github.com/arthurbabin/NeuralNetwork/blob/main/images/AN_decisionBoundary.png?raw=true" width="800" height="450"/>
 
@@ -31,3 +30,4 @@ an.plotDecisionBoundary(X,y)
 
 ## Artificial Neural Network with 1 hidden layer (ANN V1)
 
+![GIF Demo](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/1.gif)
