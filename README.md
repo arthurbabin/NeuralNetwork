@@ -29,4 +29,4 @@ an.plotDecisionBoundary(X,y)
 
 ## Artificial Neural Network with 1 hidden layer (ANN V1)
 
-![GIF Demo](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V1.gif)
+![GIF Demo ANN_V1]([https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V1.gif](https://github.com/arthurbabin/NeuralNetwork/blob/main/images/gif/ANN_V1.gif))
