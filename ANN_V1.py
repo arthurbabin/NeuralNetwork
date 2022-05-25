@@ -119,7 +119,7 @@ class ANN_V1:
             if plotDecisionBoundary:
                 self.plotDecisionBoundary(X,
                         y,
-                        name=f"images/plots/{i}.png",
+                        name=f"images/plots/ANN_V1/{i}.png",
                         iteration=i+1)
 
         if plotEvolution:

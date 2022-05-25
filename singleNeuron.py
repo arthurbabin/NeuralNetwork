@@ -47,7 +47,7 @@ class ArtificialNeuron:
         A = self.model(X)
         return A > 0.5
 
-    def train(self,X,y,plotLogLossEvolution=False):
+    def train(self,X,y,plotLogLossEvolution=False, plotDecisionBoundary=False):
         """The training algorithm of the artificial Neuron, the 
         elementary unit in an artificial neural network"""
 
@@ -63,6 +63,12 @@ class ArtificialNeuron:
             self.logLossGradient(A,X,y) #update values of dW and db
             self.gradientDescent() #update values of W and b
 
+            if plotDecisionBoundary:
+                self.plotDecisionBoundary(X,
+                        y,
+                        name=f"images/plots/singleNeuron/{i}.png",
+                        iteration=i+1)
+
         if plotLogLossEvolution:
             plt.plot(lossValues)
             plt.show()
@@ -76,7 +82,7 @@ class ArtificialNeuron:
             s += int(yPredicted[i]==y[i])
         return s/n
 
-    def plotDecisionBoundary(self,X,y):
+    def plotDecisionBoundary(self,X,y,name="singleNeuronBoundary.png",iteration=0):
         """Plot the input data on a bidimensional graph, colored depending
         on the corresponding output y and with a line representing the
         decision boundary of the ArtificialNeuron"""
@@ -106,14 +112,14 @@ class ArtificialNeuron:
         f = plt.figure()
         f.set_figwidth(16)
         f.set_figheight(9)
-        c = plt.contourf(xx, yy, zz, cmap='RdBu')
+        c = plt.contourf(xx, yy, zz, cmap='seismic')
         plt.colorbar(c)
 
         sns.scatterplot(
                 x=X[:,0],
                 y=X[:,1],
                 hue=y.flatten(),
-                palette="Set1",
+                palette="seismic",
                 s=16,
                 edgecolor="black"
                 )
@@ -121,11 +127,9 @@ class ArtificialNeuron:
         plt.xlabel("feature n°1")
         plt.ylabel("feature n°2")
         plt.legend(title="output")
-        plt.title(f"Decision Boundary of the Artificial Neuron with a precision of {self.accuracyScore(self.predict(X),y)}")
-        plt.show()
-
-
-        
+        plt.title(f"Decision Boundary of the Artificial Neuron (accuracy={self.accuracyScore(self.predict(X),y)}, iteration={iteration})")
+        f.savefig(name,format="png")
+        plt.close()
 
 if __name__=="__main__":
     ### VARIABLES ###
@@ -137,17 +141,16 @@ if __name__=="__main__":
             n_samples=nSamples, 
             n_features=nFeatures, 
             centers=2,
-            random_state=7845
+            random_state=0
             )
     y = y.reshape((y.shape[0],1))
     
     ### CREATE AND TRAIN ARTIFICIAL NEURON
-    an = ArtificialNeuron(nIterations=10000)
-    an.train(X,y)
+    an = ArtificialNeuron(nIterations=100)
+    an.train(X,y,plotDecisionBoundary=True)
 
     ### DISPLAY THE RESULTS 
     print(an.accuracyScore(an.predict(X),y))
-    an.plotDecisionBoundary(X,y)
        
 
 
