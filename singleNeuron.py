@@ -92,14 +92,23 @@ class ArtificialNeuron:
             "figure.facecolor":"#000",
             })
 
-
-        minX0,maxX0 = X[:,0].min()-1, X[:,0].max()+1
-        x0grid = np.arange(minX0,maxX0,0.1)
-        x1Bound = -(self.W[0]*x0grid+self.b)/self.W[1]
-
+        min1, max1 = X[:, 0].min()-1, X[:, 0].max()+1
+        min2, max2 = X[:, 1].min()-1, X[:, 1].max()+1
+        x1grid = np.arange(min1, max1, 0.01)
+        x2grid = np.arange(min2, max2, 0.01)
+        xx, yy = np.meshgrid(x1grid, x2grid)
+        r1, r2 = xx.flatten(), yy.flatten()
+        r1, r2 = r1.reshape((len(r1), 1)), r2.reshape((len(r2), 1))
+        grid = np.hstack((r1,r2))
+        yhat = self.predict(grid)
+        yhat = yhat[:, 0]
+        zz = yhat.reshape(xx.shape)
         f = plt.figure()
         f.set_figwidth(16)
         f.set_figheight(9)
+        c = plt.contourf(xx, yy, zz, cmap='RdBu')
+        plt.colorbar(c)
+
         sns.scatterplot(
                 x=X[:,0],
                 y=X[:,1],
@@ -108,7 +117,6 @@ class ArtificialNeuron:
                 s=16,
                 edgecolor="black"
                 )
-        plt.plot(x0grid,x1Bound,linewidth=1,color="white")
 
         plt.xlabel("feature n°1")
         plt.ylabel("feature n°2")

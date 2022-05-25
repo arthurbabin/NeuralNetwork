@@ -26,3 +26,7 @@ an.train(X,y)
 print(an.accuracyScore(an.predict(X),y))
 an.plotDecisionBoundary(X,y)
 ```
+
+## Artificial Neural Network with 1 hidden layer (ANN V1)
+
+![GIF Demo](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V1.gif)
