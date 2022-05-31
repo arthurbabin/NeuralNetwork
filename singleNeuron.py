@@ -3,13 +3,18 @@ from sklearn.datasets import make_blobs
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import tqdm
+from abstractModel import AbstractModel
 
-class ArtificialNeuron:
+class ArtificialNeuron(AbstractModel):
 
     def __init__(self,learningRate=0.1,nIterations=200):
         """Initialize the weights and the bias for the neuron"""
         self.learningRate = learningRate
         self.nIterations = nIterations
+
+    def __str__(self):
+        return f"Artificial Neuron"
 
     def model(self,X):
         """
@@ -59,31 +64,19 @@ class ArtificialNeuron:
 
         lossValues = []
         
-        for i in range(self.nIterations):
+        for i in tqdm.tqdm(range(self.nIterations)):
             A = self.model(X) #Compute the output of the model
             loss = self.logLoss(A,y)
             lossValues.append(loss)
             self.logLossGradient(A,X,y) #update values of dW and db
             self.gradientDescent() #update values of W and b
-
             if plotDecisionBoundary:
-                self.plotDecisionBoundary(X,
-                        y,
-                        name=f"images/plots/singleNeuron/{i}.png",
-                        iteration=i+1)
+                self.savePlot(X,y,name=f"{i}.png",iteration=i+1)
 
         if plotLogLossEvolution:
             plt.plot(lossValues)
             plt.show()
     
-    def accuracyScore(self,y,yPredicted):
-        """Return the accuracy score of the predictions yPredicted
-        compared to the know outcomes y"""
-        n = len(y) #the number of predictions/outcomes
-        s = 0
-        for i in range(n):
-            s += int(yPredicted[i]==y[i])
-        return s/n
 
     def plotDecisionBoundary(self,X,y,name="singleNeuronBoundary.png",iteration=0):
         """Plot the input data on a bidimensional graph, colored depending
