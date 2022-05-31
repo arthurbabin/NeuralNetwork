@@ -9,7 +9,7 @@ anV2_circle = ANN_V2(hiddenLayers=[16,16,16],nIterations=2000,learningRate=0.1)
 anV2_circle.train(Xcircle, ycircle)
 ```
 
-![GIF Demo ANN V2](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V2_Circle.gif)
+![GIF Demo ANN V2](images/gif/ANN_V2_Circle.gif)
 
 <img src="https://github.com/arthurbabin/NeuralNetwork/blob/main/images/gif/ANN_V2_Circle.gif" width=1000>
 
