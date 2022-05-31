@@ -11,7 +11,7 @@ anV2_circle.train(Xcircle, ycircle)
 
 ![GIF Demo ANN V1](https://raw.github.com/arthurbabin/NeuralNetwork/main/images/gif/ANN_V2_Circle.gif)
 
-###ANN with 5 hidden layers to separate 2 moons
+### ANN with 5 hidden layers to separate 2 moons
 
 ```python
 anV2_moon = ANN_V2(hiddenLayers=[16,16,16,16,16],nIterations=3000,learningRate=0.1)
@@ -22,7 +22,7 @@ anV2_moon.train(Xmoon, ymoon)
 
 ## Artificial Neural Network with 1 hidden layer (ANN V1)
 
-###ANN with 1 hidden layer to separate 2 circles
+### ANN with 1 hidden layer to separate 2 circles
 
 ```python
 anV1_circle = ANN_V1(nbNeuronsHiddenLayer=32, nIterations=2000, learningRate=0.1)
@@ -34,7 +34,7 @@ anV0_circle.train(Xcircle, ycircle)
 
 ## Artificial Neuron Implementation
 
-###Simple artificial neuron to separate two blobs
+### Simple artificial neuron to separate two blobs
 
 ```python
 anV0_blob = ArtificialNeuron(learningRate=0.1,nIterations=100)
